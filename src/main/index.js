@@ -138,6 +138,7 @@ document.querySelector(".send").addEventListener("click", async () => {
 
 var imagesLoaded;
 const loadImages = (list) => {
+    console.log(list);
     imagesArr = [];
     imagesLoaded = 0;
 
