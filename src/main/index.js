@@ -88,7 +88,7 @@ document.querySelector(".send").addEventListener("click", async () => {
         
     } else {
         var dir = "/images/" ;
-        wiritten.forEach(word => {
+        for(word in wiritten){
             await fetch(dir + language + "/" + word + ".png").
             then(res => res.blob()).
             then(imageBlob => {
@@ -130,7 +130,7 @@ document.querySelector(".send").addEventListener("click", async () => {
                     });
                 });
             });
-        });
+        }
     }
 
     loadImages(showList);
