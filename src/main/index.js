@@ -100,7 +100,7 @@ document.querySelector(".send").addEventListener("click", async () => {
                 });
 
             }).
-            catch(() => {
+            catch(async () => {
                 var writtenLetter = word.split("");
                 
                 writtenLetter.forEach(async letter => {
@@ -115,7 +115,7 @@ document.querySelector(".send").addEventListener("click", async () => {
                         });
         
                     }).
-                    catch(() => {
+                    catch(async () => {
                         await fetch(dir + "alfabet/SW_error.png").
                         then(resE => resE.blob()).
                         then(imageBlobE => {
