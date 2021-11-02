@@ -10,10 +10,6 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/");
 });
 
-app.get('/test', (req, res) => {
-    res.send(titleList);
-});
-
 app.get('/getTitles', (req, res) => {
     var lang = req.query?.lang;
     

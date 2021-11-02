@@ -5,13 +5,17 @@ var language = "pt";
 
 var textShowSpeed = 200;
 
+
+var isVercel = false;
+
 var alfabet;
 axios.get("/getTitles", {
         params: {
         lang: "alfabet"
     }
 }).
-then(res => alfabet = res.data);
+then(res => alfabet = res.data).
+catch(() => isVercel = true);
 
 
 var imagesArr = [];
