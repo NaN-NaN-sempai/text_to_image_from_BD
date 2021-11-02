@@ -103,7 +103,7 @@ document.querySelector(".send").addEventListener("click", async () => {
             catch(() => {
                 var writtenLetter = word.split("");
                 
-                writtenLetter.forEach(letter => {
+                for(letter in writtenLetter){
                     await fetch(dir + "alfabet/" + letter + ".png").
                     then(resL => resL.blob()).
                     then(imageBlobL => {
@@ -128,7 +128,7 @@ document.querySelector(".send").addEventListener("click", async () => {
                             });
                         });
                     });
-                });
+                }
             });
         }
     }
