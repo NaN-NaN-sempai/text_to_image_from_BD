@@ -24,15 +24,6 @@ var imagesArr = [];
 document.querySelector(".send").addEventListener("click", async () => {
     if(!input.value) return
 
-    var wordList;
-    await axios.get("/getTitles", {
-        params: {
-            lang: language
-        }
-    }).
-    then(res => wordList = res.data);
-    
-
     // systems words: space, SW_error
     var wiritten = input.value.
         normalize("NFD").
@@ -40,51 +31,107 @@ document.querySelector(".send").addEventListener("click", async () => {
         toLowerCase().
         replaceAll(" ", " SW_space ").
         split(" ");
-
-    var dir = "./images/";
     var showList = [];
-    wiritten.forEach(word => {
-        var findWord = wordList.find(w => w == word);
-        var findWordInAlfabe = alfabet.find(w => w == word);
 
-        if(findWord){
-            showList.push({
-                url: dir+language+"/"+findWord+".png",
-                time: findWord.length
-            });
+    if(!isVercel){
+        var wordList;
+        await axios.get("/getTitles", {
+            params: {
+                lang: language
+            }
+        }).
+        then(res => wordList = res.data);
+        
+        var dir = "./images/";
+        wiritten.forEach(word => {
+            var findWord = wordList.find(w => w == word);
+            var findWordInAlfabe = alfabet.find(w => w == word);
 
-        } else if(findWordInAlfabe){
-            showList.push({
-                url: dir+"alfabet/"+findWordInAlfabe+".png",
-                time: 1
-            });
-
-        } else {
-            var writtenLetter = word.split("");
-            
-            writtenLetter.forEach(letter => {
-                var findLetter = alfabet.find(l => l == letter);
-
-                var url;
-                var time;
-                var error;
-                if(findLetter){
-                    url = dir+"alfabet/"+findLetter+".png";
-                    time = 1;
-                } else {
-                    url = dir+"alfabet/"+"SW_error.png";
-                    time = 4;
-                    error = letter;
-                }
-                
+            if(findWord){
                 showList.push({
-                    url,
-                    time,
-                    error
+                    url: dir+language+"/"+findWord+".png",
+                    time: findWord.length
+                });
+
+            } else if(findWordInAlfabe){
+                showList.push({
+                    url: dir+"alfabet/"+findWordInAlfabe+".png",
+                    time: 1
+                });
+
+            } else {
+                var writtenLetter = word.split("");
+                
+                writtenLetter.forEach(letter => {
+                    var findLetter = alfabet.find(l => l == letter);
+
+                    var url;
+                    var time;
+                    var error;
+                    if(findLetter){
+                        url = dir+"alfabet/"+findLetter+".png";
+                        time = 1;
+                    } else {
+                        url = dir+"alfabet/"+"SW_error.png";
+                        time = 4;
+                        error = letter;
+                    }
+                    
+                    showList.push({
+                        url,
+                        time,
+                        error
+                    });
+                });
+            }
+        });
+        
+    } else {
+        var dir = "/images/" ;
+        wiritten.forEach(word => {
+            fetch(dir + language + "/" + word + ".png").
+            then(res => res.blob()).
+            then(imageBlob => {
+                var imageUrl = URL.createObjectURL(imageBlob);
+
+                showList.push({
+                    url: imageUrl,
+                    time: word.length
+                });
+
+            }).
+            catch(() => {
+                var writtenLetter = word.split("");
+                
+                writtenLetter.forEach(letter => {
+                    fetch(dir + "alfabet/" + letter + ".png").
+                    then(resL => resL.blob()).
+                    then(imageBlobL => {
+                        var imageUrl = URL.createObjectURL(imageBlobL);
+        
+                        showList.push({
+                            url: imageUrl,
+                            time: 1
+                        });
+        
+                    }).
+                    catch(() => {
+                        fetch(dir + "alfabet/SW_error.png").
+                        then(resE => resE.blob()).
+                        then(imageBlobE => {
+                            var imageUrl = URL.createObjectURL(imageBlobE);
+            
+                            showList.push({
+                                url: imageUrl,
+                                time: 4,
+                                error: letter
+                            });
+                        });
+                    });
                 });
             });
-        }
-    });
+        });
+    }
 
     loadImages(showList);
 });
