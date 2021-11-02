@@ -88,7 +88,7 @@ document.querySelector(".send").addEventListener("click", async () => {
         
     } else {
         var dir = "/images/" ;
-        for(word in wiritten){
+        wiritten.forEach(async word => {
             await fetch(dir + language + "/" + word + ".png").
             then(res => res.blob()).
             then(imageBlob => {
@@ -103,7 +103,7 @@ document.querySelector(".send").addEventListener("click", async () => {
             catch(() => {
                 var writtenLetter = word.split("");
                 
-                for(letter in writtenLetter){
+                writtenLetter.forEach(async letter => {
                     await fetch(dir + "alfabet/" + letter + ".png").
                     then(resL => resL.blob()).
                     then(imageBlobL => {
@@ -128,9 +128,9 @@ document.querySelector(".send").addEventListener("click", async () => {
                             });
                         });
                     });
-                }
+                });
             });
-        }
+        });
     }
 
     loadImages(showList);
