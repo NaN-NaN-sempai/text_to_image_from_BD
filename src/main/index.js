@@ -89,7 +89,7 @@ document.querySelector(".send").addEventListener("click", async () => {
     } else {
         var dir = "/images/" ;
         wiritten.forEach(word => {
-            fetch(dir + language + "/" + word + ".png").
+            await fetch(dir + language + "/" + word + ".png").
             then(res => res.blob()).
             then(imageBlob => {
                 var imageUrl = URL.createObjectURL(imageBlob);
@@ -104,7 +104,7 @@ document.querySelector(".send").addEventListener("click", async () => {
                 var writtenLetter = word.split("");
                 
                 writtenLetter.forEach(letter => {
-                    fetch(dir + "alfabet/" + letter + ".png").
+                    await fetch(dir + "alfabet/" + letter + ".png").
                     then(resL => resL.blob()).
                     then(imageBlobL => {
                         var imageUrl = URL.createObjectURL(imageBlobL);
@@ -116,7 +116,7 @@ document.querySelector(".send").addEventListener("click", async () => {
         
                     }).
                     catch(() => {
-                        fetch(dir + "alfabet/SW_error.png").
+                        await fetch(dir + "alfabet/SW_error.png").
                         then(resE => resE.blob()).
                         then(imageBlobE => {
                             var imageUrl = URL.createObjectURL(imageBlobE);
