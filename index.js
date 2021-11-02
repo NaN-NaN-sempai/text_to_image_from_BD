@@ -10,8 +10,8 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/");
 });
 
-pp.get('/test', (req, res) => {
-    res.send("WORK");
+app.get('/test', (req, res) => {
+    res.send(titleList);
 });
 
 app.get('/getTitles', (req, res) => {
