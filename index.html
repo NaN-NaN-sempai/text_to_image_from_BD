@@ -4,53 +4,145 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Teto para libras BETA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <style>
         * {
+            outline: none;
             margin: 0;
+            padding: 0;
+            font-family: "Roboto",arial,sans-serif;
         }
         body {
-            background: black;
+            background: #fafafa;
+        }
+        .mainContainer {
+            background: white;
+            width: 80%;
+            position: relative;
+            left: 50%;
+            margin-top: 50px;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            overflow: hidden;
+            border: solid 1px #e0e0e0;
+            box-shadow: 0 0 3px #e0e0e0;
+        }
+        .container {
+            display: flex;
+        }
+        .containerButtons {
+            padding: 10px;
+            padding-bottom: 0px;
+            padding-top: 0px;
         }
 
-        .mainContainer {
-            display: grid;
-            justify-items: center;
+        .textField {
+            resize: none;
+            font-size: 15px;
+            width: 100%;
+            position: relative;
+        }   
+        .textField.output {
+            border: none;
+            border-top: solid 1px #e0e0e0;
+            color: #5f6368;
+        }
+        .textField.input {
+            border: none;
+            border-top: solid 1px #e0e0e0;
+            border-right: solid 1px #e0e0e0;
+            min-height: 200px;
+        }
+        .textField.noButtons {
+            padding: 20px;
+            padding-top: 10px;
+            padding-bottom: 0;
+        }
+
+        .textField .button {
+            width: fit-content;
+            text-transform: uppercase;
+            padding: 10px;
+            padding-top: 15px;
+            cursor: pointer;
+            border-bottom: 2px solid #1a73e8;
+            color: #1a73e8;
+        }
+        .textField .button.right {
+            margin-left: 20px;
+        }
+        
+        .textField .button:hover {
+            background-color: #f5f5f5;
+            border-bottom: 2px solid #6200ee;
+        }
+        .textField.greyedColor {
+            background: #f5f5f5;
+            color: black;
+        }
+
+        .signIcon {
+            width: 15px;
             position: absolute;
             top: 50%;
-            right: 50%;
-            transform: translate(50%, -50%);
+            transform: translate(-50%, -40%);
+            filter: invert(49%) sepia(1%) saturate(2723%) hue-rotate(168deg) brightness(77%) contrast(91%);  
+            cursor: pointer;         
         }
-        .mainContainer > * {
-            margin-top: 40px;
-        }
-
-        .showEndResult {
-            height: 100px;
-            width: 100px;
-            color: white;
-        }
-
-        .showEndResult img {
-            height: 100%;
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        
+        @media only screen and (max-width: 800px) {
+            .mainContainer {
+                width: 100%;
+                border-radius: 0;
+            }
         }
     </style>
 </head>
 <body>
+    
+    
+
     <div class="mainContainer">
-        <div class="write">
-            <input class="textSource" type="text" placeholder="Insira seu texto aqui...">
-            <button class="send"> Enviar </button>
+        <div class="container containerButtons">
+            <div class="textField">
+                <p class="button">Português</p>
+            </div>
+            <div class="textField">
+                <div class="signIcon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M154.9 162c.3 .7 .7 1.5 1.1 2.2l17.8 30.9c11.1-12.6 27.4-19.8 44.4-19.1l-20.7-35.8c-6.6-11.5-21.3-15.4-32.8-8.8c-10.8 6.2-14.9 19.5-9.9 30.6zm173.6 47C399.7 231.7 448 297.8 448 372.5c0 1.5 0 3-.1 4.5c39.7-25.6 64.1-69.7 64.1-117.4V136c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 81.7L347.8 16.5C341.2 5 326.5 1.1 315.1 7.7s-15.4 21.3-8.8 32.8l64 110.9c2.2 3.8 .9 8.7-2.9 10.9s-8.7 .9-10.9-2.9l-80-138.6C269.8 9.3 255.1 5.4 243.6 12s-15.4 21.3-8.8 32.8l80 138.6c2.2 3.8 .9 8.7-2.9 10.9s-8.7 .9-10.9-2.9L237 80.5c-6.6-11.5-21.3-15.4-32.8-8.8s-15.4 21.3-8.8 32.8l44 76.2L328.5 209zM64 488c0 12.4 9.4 22.6 21.5 23.9c.8 .1 1.6 .1 2.5 .1H288.7 296c66.3 0 120-53.7 120-120c0-1.2 0-2.4-.1-3.6c0-1.2 .1-2.5 .1-3.7c0-68-44-128.2-108.9-148.9l-83.9-26.7c-12.6-4-26.1 3-30.1 15.6s3 26.1 15.6 30.1L262.6 272H56c-13.3 0-24 10.7-24 24s10.7 24 24 24H184c4.4 0 8 3.6 8 8s-3.6 8-8 8H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H184c4.4 0 8 3.6 8 8s-3.6 8-8 8H56c-13.3 0-24 10.7-24 24s10.7 24 24 24H184c4.4 0 8 3.6 8 8s-3.6 8-8 8H88c-13.3 0-24 10.7-24 24z"/></svg>
+                </div>
+                <p class="button right">libras</p>
+            </div>
         </div>
-        <div class="show">
-            <div class="showEndResult"></div>
+        
+        <div class="container">
+            <textarea class="textField noButtons input"></textarea>
+            <div id="output" class="textField noButtons output">
+                Tradução
+            </div>
         </div>
     </div>
+
 </body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="./src/main/index.js"></script>
+<script>
+    
+    Array.from(document.querySelectorAll('.textField.input')).forEach(e => {
+        e.addEventListener("input", (evt) => {
+            if(e.value){
+                document.querySelector('#output').classList.add("greyedColor");
+                document.querySelector('#output').innerHTML = "Traduzindo...";
+            } else {
+                document.querySelector('#output').classList.remove("greyedColor");
+                document.querySelector('#output').innerHTML = "Tradução";
+            }
+
+            var element = evt.target; 
+            element.style.height = "5px";
+            element.style.height = (element.scrollHeight)+"px";
+        })
+    });
+</script>
+<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./src/main/index.js"></script> -->
 </html>

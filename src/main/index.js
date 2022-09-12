@@ -3,7 +3,7 @@ var show = document.querySelector(".showEndResult");
 
 var language = "pt";
 
-var textShowSpeed = 200;
+var textShowSpeed = 400;
 
 
 var isVercel = false;

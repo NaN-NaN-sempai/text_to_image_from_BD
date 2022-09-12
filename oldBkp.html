@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teto para libras BETA</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        body {
+            background: black;
+        }
+
+        .mainContainer {
+            display: grid;
+            justify-items: center;
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+        }
+        .mainContainer > * {
+            margin-top: 40px;
+        }
+
+        .showEndResult {
+            height: 500px;
+            width: 500px;
+            color: white;
+        }
+
+        .showEndResult img {
+            height: 100%;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="mainContainer">
+        <div class="write">
+            <input class="textSource" type="text" placeholder="Insira seu texto aqui...">
+            <button class="send"> Enviar </button>
+        </div>
+        <div class="show">
+            <div class="showEndResult"></div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./src/main/index.js"></script>
+</html>
