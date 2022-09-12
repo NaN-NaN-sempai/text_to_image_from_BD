@@ -7,7 +7,7 @@ var port = 80;
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/");
+    res.sendFile(__dirname + "/oldBkp.html");
 });
 
 app.get('/getTitles', (req, res) => {
